@@ -1,7 +1,11 @@
+const dotenv = require('dotenv');
+
+// Load env vars FIRST — before any other imports that may need them
+dotenv.config();
+
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const dotenv = require('dotenv');
 const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 const http = require('http');
@@ -20,9 +24,6 @@ const reviewRoutes = require('./routes/reviewRoutes');
 const wishlistRoutes = require('./routes/wishlistRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const analyticsRoutes = require('./routes/analyticsRoutes');
-
-// Load env vars
-dotenv.config();
 
 // Connect to database
 connectDB();
