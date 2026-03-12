@@ -69,6 +69,51 @@ exports.addToCart = async (req, res) => {
     }
 };
 
+// @desc   Add multiple items to cart
+// @route  POST /api/cart/bulk
+exports.addMultipleToCart = async (req, res) => {
+    try {
+        const { productIds } = req.body; // Expecting an array of product IDs
+
+        if (!productIds || !Array.isArray(productIds) || productIds.length === 0) {
+            return res.status(400).json({ message: 'Please provide an array of product IDs' });
+        }
+
+        let cart = await Cart.findOne({ user: req.user._id });
+        if (!cart) {
+            cart = new Cart({ user: req.user._id, items: [] });
+        }
+
+        // Fetch products to verify stock
+        const products = await Product.find({ _id: { $in: productIds } });
+        
+        const validProducts = products.filter(p => p.stockQuantity >= 1);
+        let addedCount = 0;
+
+        validProducts.forEach(product => {
+            const existingItem = cart.items.find(item => item.product.toString() === product._id.toString());
+            if (existingItem) {
+                // If adding all products displayed, we increment by 1
+                existingItem.quantity += 1;
+            } else {
+                cart.items.push({ product: product._id, quantity: 1 });
+            }
+            addedCount++;
+        });
+
+        await cart.save();
+        cart = await Cart.findOne({ user: req.user._id }).populate('items.product');
+
+        res.status(200).json({ 
+            success: true, 
+            cart: cart.items, 
+            message: `Successfully added ${addedCount} product(s) to your cart.` 
+        });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
 // @desc   Update cart item quantity
 // @route  PUT /api/cart/:productId
 exports.updateCartItem = async (req, res) => {

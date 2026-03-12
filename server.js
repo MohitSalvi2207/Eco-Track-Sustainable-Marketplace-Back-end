@@ -79,7 +79,14 @@ app.use('/api/analytics', analyticsRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {
-    res.json({ status: 'ok', message: 'Eco-Track API is running 🌿' });
+    const dbState = mongoose.connection.readyState;
+    const dbStatus = { 0: 'disconnected', 1: 'connected', 2: 'connecting', 3: 'disconnecting' };
+    res.json({
+        status: 'ok',
+        message: 'Eco-Track API is running 🌿',
+        database: dbStatus[dbState] || 'unknown',
+        environment: process.env.NODE_ENV || 'development'
+    });
 });
 
 // Error handler
