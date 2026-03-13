@@ -42,7 +42,7 @@ const images = [
   'https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=800&q=80',
   'https://images.unsplash.com/photo-1597633425046-08f5110420b5?w=800&q=80',
   'https://images.unsplash.com/photo-1627123424574-724758594e93?w=800&q=80',
-  'https://images.unsplash.com/photo-1611735341450-58dd5d01a364?w=800&q=80',
+  'https://images.unsplash.com/photo-1542601906970-14197bf21a92?w=800&q=80',
   'https://images.unsplash.com/photo-1610141160614-55e40f051eeb?w=800&q=80',
   'https://images.unsplash.com/photo-1515823064-d6e0c04616a7?w=800&q=80',
   'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=800&q=80',

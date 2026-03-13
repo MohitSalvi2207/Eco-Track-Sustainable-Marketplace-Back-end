@@ -135,7 +135,8 @@ const getProducts = (sellerId) => [
         description: 'Handmade using organic cotton, sustainably sourced beeswax, tree resin, and jojoba oil. Beautiful botanical print designs. Set of 3 (S, M, L). Replaces 300+ meters of plastic wrap over its 1-year lifespan.',
         price: 999,
         category: 'Home & Living',
-        images: ['https://images.unsplash.com/photo-1611735341450-58dd5d01a364?w=800&q=80'],
+        images: ['https://images.unsplash.com/photo-1611735341450-58dd5d01a364?w=800&q=80'], // This was broken, but I'll update it to a working one if I find it. Actually I'll use a better one.
+        images: ['https://images.unsplash.com/photo-1583209814683-c023dd293cc6?w=800&q=80'],
         ecoRating: 4.7,
         carbonFootprint: 'Very Low',
         sustainableMaterials: ['Beeswax', 'Organic Cotton', 'Jojoba Oil'],
